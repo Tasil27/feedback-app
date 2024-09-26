@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world
+    matchExpressions:
+    - key: env
+      operator: NotIn
+      values:
+      - development
+  template:
+    metadata:
+      labels:
+        app: hello-world
+        env: production
+    spec:
+      containers:
+      - name: hello-world
+        image: nginxdemos/hello
+        ports:
+        - containerPort: 80
