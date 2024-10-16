@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: feedback-app-database-service
+  namespace: feedback-app
 spec:
   selector:
     app: feedback-app-db
@@ -17,6 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: feedback-app-database
+  namespace: feedback-app
 spec:
   replicas: 1
   selector:
@@ -24,6 +26,7 @@ spec:
       app: feedback-app-db
   template:
     metadata:
+      namespace: feedback-app
       labels:
         app: feedback-app-db
         environment: test
@@ -62,10 +65,3 @@ spec:
           timeoutSeconds: 5
           failureThreshold: 5
           successThreshold: 1
-        volumeMounts:
-        - name: feedback-db-volume
-          mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: feedback-db-volume
-        persistentVolumeClaim:
-          claimName: feedback-database-pvc

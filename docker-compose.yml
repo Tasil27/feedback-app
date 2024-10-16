@@ -18,7 +18,9 @@ services:
       retries: 5
 
   feedback_app:
-    image: tasil/feedback-app:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
     container_name: feedback-app
     environment:
       - DB_USER=postgres
@@ -40,3 +42,4 @@ networks:
 
 volumes:
   feedback-app-data:
+

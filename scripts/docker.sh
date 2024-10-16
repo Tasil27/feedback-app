@@ -1,9 +1,13 @@
 # Build the backend app container
 docker build \
-    -t feedback-app:v4.0 \
+    -t feedback-app:v4.5 \
     -t feedback-app:latest \
-    -t galaataman/feedback-app:v4.0 \
-    -t galaataman/feedback-app:latest .
+    -t tasil/feedback-app:v4.5 \
+    -t tasil/feedback-app:latest .
+
+# Push the images to the Docker Hub
+docker push tasil/feedback-app:v4.5
+docker push tasil/feedback-app:latest
 
 # Create a docker network for the app
 docker network create feedback-app-nw
@@ -39,3 +43,6 @@ docker stop feedback-app postgres-db
 
 # Remove the containers
 docker rm feedback-app postgres-db
+
+# Start the app with Docker Compose
+docker-compose up --build

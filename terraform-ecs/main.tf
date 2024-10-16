@@ -67,7 +67,7 @@ resource "aws_ecs_task_definition" "feedback-app-task-definition" {
         },
         {
             "name": "feedback-app",
-            "image": "galaataman/feedback-app:latest",
+            "image": "tasil/feedback-app:latest",
             "portMappings": [
                 {
                     "name": "feedback-app-3000-tcp",
